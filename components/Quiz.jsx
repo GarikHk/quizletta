@@ -1,4 +1,4 @@
-import React, { Suspense } from "react"
+import React, { Suspense, useState } from "react"
 import {
     useLoaderData,
     defer,
@@ -6,7 +6,6 @@ import {
 } from "react-router-dom"
 import getQuiz from "../utils/getQuiz"
 import shuffleArray from "../utils/shuffleArray"
-import { decode } from 'html-entities'
 import Question from "./Question"
 
 export function loader({ request }) {
@@ -16,22 +15,27 @@ export function loader({ request }) {
 
 export default function Quiz() {
     const dataPromise = useLoaderData()
+    const [running, setRunning] = useState(true)
 
     function resolvedQuiz(quizArr) {
         const question = quizArr
             .map((quest, index) => {
-                const answers = shuffleArray([...quest.incorrect_answers, quest.correct_answer])
+                console.log(quest.correct_answer)
 
                 return (
-                    <Question quest={quest} answers={answers} key={index} />
+                    <Question quest={quest} state={running} key={index} />
                 )
             })
 
-        return question
+        return (
+            <div className="questions">
+                {question}
+                <button className="questions-check" onClick={() => setRunning(false)}>Check Answers</button>
+            </div>)
     }
 
     return (
-        <Suspense fallback={<h3 className="loading">Loading...</h3>}>
+        <Suspense fallback={<h3 className="loading">Setting Up...</h3>}>
             <Await resolve={dataPromise.questions}>
                 {resolvedQuiz}
             </Await>

@@ -1,22 +1,31 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import { decode } from 'html-entities'
 import shuffleArray from "../utils/shuffleArray"
 
 export default function Question(props) {
-    const { quest, answers } = props
-    // const answers = shuffleArray([...quest.incorrect_answers, quest.correct_answer])
+    const { quest, state } = props
     const [selected, setSelected] = useState("")
+    const [answers, setAnswers] = useState([]);
 
-    const clickHandler = (answer) => {
-        setSelected(answer)
-    }
+    useEffect(() => {
+        const shuffledAnswers = shuffleArray([
+            ...quest.incorrect_answers,
+            quest.correct_answer,
+        ]);
+        setAnswers(shuffledAnswers);
+    }, [quest]);
 
     return (
         <div className="question">
             <p>{decode(quest.question)}</p>
-            <div className="question-answers">
+            <div className="question-answers-box">
                 {answers.map((ans, ind) => (
-                    <button key={ind} className={selected === ans ? "selected" : ""} onClick={() => clickHandler(ans)}>{decode(ans)}</button>
+                    <button
+                        disabled={!state}
+                        key={ind}
+                        className={`question-answers ${selected === ans ? "selected" : ""}`}
+                        onClick={() => setSelected(ans)}
+                    >{decode(ans)}</button>
                 ))}
             </div>
             <div className="custom-br" />
