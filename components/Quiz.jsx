@@ -31,7 +31,7 @@ export default function Quiz() {
             <div className="questions">
                 {question}
                 {!running && <p className="stats">{`You scored ${stats}/${quizArr.length} correct answers`}</p>}
-                <button className="questions-check" onClick={() => running ? setRunning(false) : navigate("..")}>{running ? "Check Answers" : "Play again"}</button>
+                <button className="questions-check" onClick={() => running ? setRunning(false) : navigate("/")}>{running ? "Check Answers" : "Play again"}</button>
             </div>)
     }
 

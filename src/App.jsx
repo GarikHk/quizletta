@@ -9,6 +9,8 @@ import {
 import Layout from '../components/Layout'
 import Settings, { action as settingsAction } from '../components/Settings'
 import Quiz, {loader as quizLoader} from "../components/Quiz"
+import NotFound from "../components/NotFound"
+import Error from "../components/Error"
 
 function App() {
     const router = createBrowserRouter(
@@ -22,8 +24,10 @@ function App() {
                 <Route
                     path="quiz"
                     element={<Quiz />}
+                    errorElement={<Error />}
                     loader={quizLoader}
                 />
+                <Route path="*" element={<NotFound />} />
             </Route>
         )
     )
