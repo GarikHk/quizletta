@@ -3,8 +3,11 @@ import { decode } from 'html-entities'
 import shuffleArray from "../utils/shuffleArray"
 
 export default function Question(props) {
-    const { quest, state } = props
-    const [selected, setSelected] = useState("")
+    const { quest, state, setStats } = props
+    const [selected, setSelected] = useState({
+        id: -1,
+        answer: "",
+    })
     const [answers, setAnswers] = useState([]);
 
     useEffect(() => {
@@ -15,6 +18,10 @@ export default function Question(props) {
         setAnswers(shuffledAnswers);
     }, [quest]);
 
+    useEffect(() => {
+        if(!state && selected.answer === quest.correct_answer) setStats(prev => prev + 1)
+    }, [state])
+
     return (
         <div className="question">
             <p>{decode(quest.question)}</p>
@@ -23,8 +30,15 @@ export default function Question(props) {
                     <button
                         disabled={!state}
                         key={ind}
-                        className={`question-answers ${selected === ans ? "selected" : ""}`}
-                        onClick={() => setSelected(ans)}
+                        className={
+                            state
+                                ? `question-answers ${selected.answer === ans ? "selected" : ""}`
+                                : `checked-answers ${ans === quest.correct_answer
+                                    ? "right" 
+                                    : selected.id === ind ? "wrong" : ""
+                                }`
+                        }
+                        onClick={() => setSelected(prev => ({ ...prev, answer: ans, id: ind }))}
                     >{decode(ans)}</button>
                 ))}
             </div>

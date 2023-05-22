@@ -1,11 +1,11 @@
 import React, { Suspense, useState } from "react"
 import {
+    useNavigate,
     useLoaderData,
     defer,
     Await
 } from "react-router-dom"
 import getQuiz from "../utils/getQuiz"
-import shuffleArray from "../utils/shuffleArray"
 import Question from "./Question"
 
 export function loader({ request }) {
@@ -14,23 +14,24 @@ export function loader({ request }) {
 }
 
 export default function Quiz() {
+    const navigate = useNavigate()
     const dataPromise = useLoaderData()
     const [running, setRunning] = useState(true)
+    const [stats, setStats] = useState(0)
 
     function resolvedQuiz(quizArr) {
         const question = quizArr
             .map((quest, index) => {
-                console.log(quest.correct_answer)
-
                 return (
-                    <Question quest={quest} state={running} key={index} />
+                    <Question quest={quest} state={running} setStats={setStats} key={index} />
                 )
             })
 
         return (
             <div className="questions">
                 {question}
-                <button className="questions-check" onClick={() => setRunning(false)}>Check Answers</button>
+                {!running && <p className="stats">{`You scored ${stats}/${quizArr.length} correct answers`}</p>}
+                <button className="questions-check" onClick={() => running ? setRunning(false) : navigate("..")}>{running ? "Check Answers" : "Play again"}</button>
             </div>)
     }
 

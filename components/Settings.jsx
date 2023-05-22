@@ -11,7 +11,7 @@ export async function action({ request }) {
     const category = formData.get("category")
     const difficulty = formData.get("difficulty")
 
-    let pathname = `quiz/?amount=${amount}`
+    let pathname = `quiz?amount=${amount}`
     if(category !== "any") pathname += `&category=${category}`
     if(difficulty !== "any") pathname += `&difficulty=${difficulty}`
 

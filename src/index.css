@@ -30,6 +30,7 @@ input::-webkit-inner-spin-button {
     margin: 10vh auto;
 }
 
+/* SETTINGS */
 .title h1 {
     font-weight: 800;
     color: #293264;
@@ -88,6 +89,7 @@ input::-webkit-inner-spin-button {
     color: #293264;
 }
 
+/* QUESTIONS */
 .question {
     display: flex;
     flex-direction: column;
@@ -148,8 +150,8 @@ input::-webkit-inner-spin-button {
 }
 
 .questions-check {
-    margin: 6vh;
     padding: 2vh 5vh;
+    margin-top: 16px;
     font-family: 'Inter', sans-serif;
     font-weight: 500;
     font-size: 16px;
@@ -166,5 +168,39 @@ input::-webkit-inner-spin-button {
 .questions-check:hover {
     transform: scale(1.1);
     background-color: white;
+    color: #293264;
+}
+
+.checked-answers {
+    margin: 0 2vh 2vh 2vh;
+    box-sizing: border-box;
+    background: none;
+    font-family: 'Inter', sans-serif;
+    color: #a5abc7;
+    border: 0.79px solid #a5abc7;
+    border-radius: 7.94239px;
+    padding: 1vh 3vh;
+}
+
+.checked-answers.right {
+    background-color: #94D7A2;
+    color: #293264;
+    border: none;
+}
+
+.checked-answers.wrong {
+    background-color: #F8BCBC;
+    color: #a5abc7;
+    border: none;
+}
+
+.stats {
+    color: #293264;
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 19px;
+    margin-bottom: 0;
+}
+.loading {
     color: #293264;
 }
