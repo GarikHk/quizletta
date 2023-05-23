@@ -42,8 +42,8 @@ export default function Settings() {
                     />
                 </div>
 
-                <div className="settings-cat-diff">
-                    <div className="settings-category">
+                <div className="settings-prop">
+                    <div className="settings-item">
                         <label htmlFor="category">Select Category</label>
                         <select name="category" className="settings-params" id="category" defaultValue="any">
                             <option value="any">Any Category</option>
@@ -74,7 +74,7 @@ export default function Settings() {
                         </select>
                     </div>
 
-                    <div className="settings-difficulty">
+                    <div className="settings-item">
                         <label htmlFor="difficulty">Selecet Difficulty</label>
                         <select name="difficulty" className="settings-params" id="difficulty" defaultValue="any">
                             <option value="any">Any Difficulty</option>

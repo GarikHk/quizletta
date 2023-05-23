@@ -1,3 +1,39 @@
+@media (max-width: 600px) {
+    main {
+        margin: 0;
+        padding: 0;
+    }
+
+    .settings-amount input,
+    .settings-prop select {
+        width: 90%;
+    }
+
+    .settings-form button {
+        padding: 2vh 5vh;
+    }
+
+    .site-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* height: 100vh; */
+        width: auto;
+    }
+
+    .settings-prop {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+    }
+
+    .question-answers-box {
+        width: auto;
+        flex-wrap: wrap;
+    }
+}
+
 * {
     box-sizing: border-box;
 }
@@ -58,13 +94,11 @@ input::-webkit-inner-spin-button {
 }
 
 main {
-    width: 90vh;
     text-align: center;
     padding: 10vh;
     background: #F5F7FB;
     border-radius: 15px;
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
-    margin: 10vh auto;
 }
 
 /* SETTINGS */
@@ -89,7 +123,7 @@ main {
 }
 
 .settings-amount input,
-.settings-cat-diff select {
+.settings-prop select {
     margin: 1vh;
     height: 5vh;
     width: 30vh;
@@ -98,10 +132,16 @@ main {
     box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.1);
 }
 
-.settings-cat-diff {
+.settings-prop {
     display: flex;
     align-items: center;
     justify-content: center;
+    gap: 40px;
+}
+
+.settings-item {
+    display: flex;
+    flex-direction: column;
 }
 
 .settings-form button {
@@ -132,6 +172,7 @@ main {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: auto;
 }
 
 .question p {
