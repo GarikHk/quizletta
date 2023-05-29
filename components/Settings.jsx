@@ -23,7 +23,7 @@ export default function Settings() {
 
     return (
         <div className="title">
-            <h1 className="settings-title">Quizzletta</h1>
+            <h1 className="settings-title">Quizletta</h1>
             <Form
                 method="post"
                 className="settings-form"
